@@ -1277,6 +1277,7 @@ export default function GetHomePageRowData(
     icon: ICONS.SUBSCRIBE,
     options: {
       orderBy: ['release_time'],
+      streamType: CS.FILE_TYPES,
       releaseTime:
         subscribedChannels.length > 20
           ? `>${Math.floor(moment().subtract(6, 'months').startOf('week').unix())}`
@@ -1289,7 +1290,7 @@ export default function GetHomePageRowData(
     },
   };
 
-  rowData.push(PRIMARY_CONTENT);
+  //   rowData.push(PRIMARY_CONTENT);
   if (showPersonalizedChannels) rowData.push(RECENT_FROM_FOLLOWING);
   rowData.push(ENLIGHTENMENT);
   //   rowData.push(PRIMARY_CONTENT_2);

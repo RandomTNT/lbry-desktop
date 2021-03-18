@@ -32,7 +32,7 @@ type Props = {
   timestamp?: string,
   feeAmount?: string,
   limitClaimsPerChannel?: number,
-  //   pin: boolean,
+  streamTypes?: Array<string>,
 };
 
 function ClaimTilesDiscover(props: Props) {
@@ -54,6 +54,7 @@ function ClaimTilesDiscover(props: Props) {
     feeAmount,
     limitClaimsPerChannel,
     fetchingClaimSearchByQuery,
+    streamTypes,
     // pin,
   } = props;
   const { location } = useHistory();
@@ -91,7 +92,7 @@ function ClaimTilesDiscover(props: Props) {
     channel_ids: channelIds || [],
     not_channel_ids: [],
     order_by: orderBy || ['trending_group', 'trending_mixed'],
-    stream_types: [CS.FILE_VIDEO],
+    stream_types: streamTypes || [CS.FILE_VIDEO],
   };
 
   if (!ENABLE_NO_SOURCE_CLAIMS) {
