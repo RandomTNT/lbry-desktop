@@ -15,7 +15,7 @@ import {
   makeSelectEditedCollectionForId,
   makeSelectPendingCollectionForId,
 } from 'lbry-redux';
-import { selectBlockedChannels } from 'redux/selectors/blocked';
+import { selectMutedChannels } from 'redux/selectors/blocked';
 import { selectBlackListedOutpoints, selectFilteredOutpoints } from 'lbryinc';
 import { selectShowMatureContent } from 'redux/selectors/settings';
 import CollectionPreviewTile from './view';
@@ -39,7 +39,7 @@ const select = (state, props) => {
     title: collectionUri && makeSelectTitleForUri(collectionUri)(state),
     blackListedOutpoints: selectBlackListedOutpoints(state),
     filteredOutpoints: selectFilteredOutpoints(state),
-    blockedChannelUris: selectBlockedChannels(state),
+    blockedChannelUris: selectMutedChannels(state),
     showMature: selectShowMatureContent(state),
     isMature: makeSelectClaimIsNsfw(collectionUri)(state),
   };

@@ -23,7 +23,7 @@ type Props = {
   publishedCollections: CollectionGroup,
   publishedPlaylists: CollectionGroup,
   unpublishedCollections: CollectionGroup,
-  savedCollections: CollectionGroup,
+  // savedCollections: CollectionGroup,
 };
 
 function LibraryPage(props: Props) {
@@ -44,9 +44,6 @@ function LibraryPage(props: Props) {
   const page = Number(urlParams.get('page')) || 1;
   const hasDownloads = allDownloadedUrlsCount > 0 || (myPurchases && myPurchases.length > 0);
   const loading = fetchingFileList || fetchingMyPurchases;
-
-  // also fetch and resolve all my collections
-  // when resolving collections, if resolved is newer, update local. if resovled is older, mark out of date / should update
 
   React.useEffect(() => {
     doPurchaseList(page, PURCHASES_PAGE_SIZE);
