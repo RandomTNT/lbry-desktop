@@ -139,7 +139,8 @@ export default function CollectionPage(props: Props) {
     const params = {};
     params.claimIds = sanitizeClaimIds(collectionClaimIds).split(',');
     if (claimsReplace) params.replace = true;
-    editCollection(collectionId, params);
+    const success = editCollection(collectionId, params);
+    if (success) setCollectionClaimIds('');
   }
 
   function handleTabChange(newTabIndex) {

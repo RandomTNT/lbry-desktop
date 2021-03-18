@@ -71,9 +71,11 @@ function LibraryPage(props: Props) {
         );
         // }
       })}
-      <h1>Private Collections</h1>
+      <h1>
+        Unpublished Collections
+        <ClaimCollectionAddButton />
+      </h1>
       <div className={'claim-grid'}>
-        <CollectionPreviewTile tileLayout newButton={<ClaimCollectionAddButton />} />
         {/* $FlowFixMe */}
         {Object.keys(unpublishedCollections).map((key) => {
           return (
