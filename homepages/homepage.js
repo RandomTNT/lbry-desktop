@@ -1277,7 +1277,7 @@ export default function GetHomePageRowData(
     icon: ICONS.SUBSCRIBE,
     options: {
       orderBy: ['release_time'],
-      streamType: CS.FILE_TYPES,
+      streamTypes: CS.FILE_TYPES,
       releaseTime:
         subscribedChannels.length > 20
           ? `>${Math.floor(moment().subtract(6, 'months').startOf('week').unix())}`
