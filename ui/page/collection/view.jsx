@@ -38,7 +38,7 @@ type Props = {
   claimIsPending: boolean,
 
   deleteCollection: (string) => void,
-  editCollection: (string, any) => void, // any
+  editCollection: (string, CollectionUpdateParams) => void,
   fetchCollectionItems: (string, () => void) => void,
   resolveUris: (string) => void,
   user: ?User,

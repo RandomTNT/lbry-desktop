@@ -11,12 +11,12 @@ import { isNameValid } from 'lbry-redux';
 import { INVALID_NAME_ERROR } from 'constants/claim';
 
 type Props = {
-  claim: GenericClaim,
+  claim: Claim,
   builtin: any,
   published: any,
   unpublished: any,
   addCollection: (string) => void, // maybe promise
-  editCollection: any,
+  editCollection: (string, CollectionUpdateParams) => void,
   closeModal: () => void,
   uri: string,
 };
@@ -35,7 +35,7 @@ type Props = {
  */
 const ClaimCollectionAdd = (props: Props) => {
   const { builtin, published, unpublished, addCollection, editCollection, claim, closeModal, uri } = props;
-  const claimId = claim && claim.claim_id;
+  const permanentUrl = claim && claim.permanent_url;
 
   const [newCollectionName, setNewCollectionName] = React.useState('');
   const [newCollectionNameError, setNewCollectionNameError] = React.useState();
@@ -73,7 +73,7 @@ const ClaimCollectionAdd = (props: Props) => {
               {/* $FlowFixMe */}
               {Object.values(builtin).map((l) => {
                 const { items, id, name } = l;
-                const isAdded = items.some((i) => i.claimId === claimId);
+                const isAdded = items.some((i) => i === permanentUrl);
                 return (
                   <div
                     key={id}
@@ -104,7 +104,7 @@ const ClaimCollectionAdd = (props: Props) => {
                 // $FlowFixMe
                 Object.values(unpublished).map((l) => {
                   const { items, id, name } = l;
-                  const isAdded = items && items.some((i) => i.claimId === claimId);
+                  const isAdded = items && items.some((i) => i === permanentUrl);
                   return (
                     <div
                       key={id}
@@ -130,7 +130,7 @@ const ClaimCollectionAdd = (props: Props) => {
                 // $FlowFixMe
                 Object.values(published).map((l) => {
                   const { items, id, name } = l;
-                  const isAdded = items && items.some((i) => i.claimId === claimId);
+                  const isAdded = items && items.some((i) => i === permanentUrl);
                   return (
                     <div
                       key={id}

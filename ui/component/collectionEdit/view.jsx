@@ -216,11 +216,11 @@ function CollectionForm(props: Props) {
   }, [name]);
 
   React.useEffect(() => {
-    // if (activeChannelId) {
-    setParams({ ...params, channel_id: activeChannelId });
-    // }
+    if (activeChannelId) {
+      setParams({ ...params, channel_id: activeChannelId });
+    }
   }, [activeChannelId]);
-
+  //
   // React.useEffect(() => {
   //   clearCollectionErrors();
   // }, [clearCollectionErrors]);
