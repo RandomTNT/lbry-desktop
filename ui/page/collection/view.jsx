@@ -68,7 +68,6 @@ export default function CollectionPage(props: Props) {
   const {
     push,
     replace,
-    goBack,
     location: { search },
   } = useHistory();
 
@@ -188,7 +187,13 @@ export default function CollectionPage(props: Props) {
           simpleTitle: __('Editing'),
         }}
       >
-        <CollectionEdit uri={uri} collectionId={collectionId} onDone={(collectionId) => goBack()} />
+        <CollectionEdit
+          uri={uri}
+          collectionId={collectionId}
+          onDone={(claimId) => {
+            replace(`/$/${PAGES.COLLECTION}/${claimId}`);
+          }}
+        />
       </Page>
     );
   }

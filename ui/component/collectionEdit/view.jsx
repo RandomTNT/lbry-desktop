@@ -45,7 +45,7 @@ type Props = {
   createError: string,
   creatingCollection: boolean,
   clearCollectionErrors: () => void,
-  onDone: () => void,
+  onDone: (string) => void,
   openModal: (
     id: string,
     { onUpdate: (string) => void, assetName: string, helpText: string, currentValue: string, title: string }
@@ -189,16 +189,18 @@ function CollectionForm(props: Props) {
   function handleSubmit() {
     if (uri) {
       // fix this - claimid? uri? collectionId?
-      publishCollectionUpdate(params).then((success) => {
-        if (success) {
-          onDone();
+      publishCollectionUpdate(params).then((pendingClaim) => {
+        if (pendingClaim) {
+          const claimId = pendingClaim.claim_id;
+          onDone(claimId);
         }
       });
     } else {
-      publishCollection(params, collectionId).then((success) => {
-        if (success) {
+      publishCollection(params, collectionId).then((pendingClaim) => {
+        if (pendingClaim) {
+          const claimId = pendingClaim.claim_id;
           // analytics.apiLogPublish(success);
-          onDone();
+          onDone(claimId);
         }
       });
     }
